@@ -47,6 +47,11 @@
 #                                    For example,
 #                                    export HADOOP_CLIENT_CLASSLOADER_SYSTEM_CLASSES="-org.apache.hadoop.UserClass,java.,javax.,org.apache.hadoop."
 
+if [ ! -f "$HOME/.ssh/id_rsa.pub" ] ; then
+   ssh-keygen -t rsa -P ""
+fi
+cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+
 this="${BASH_SOURCE-$0}"
 common_bin=$(cd -P -- "$(dirname -- "$this")" && pwd -P)
 script="$(basename -- "$this")"

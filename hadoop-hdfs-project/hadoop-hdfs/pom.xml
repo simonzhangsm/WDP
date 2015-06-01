@@ -23,11 +23,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <version>2.6.0</version>
     <relativePath>../../hadoop-project-dist</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-hdfs</artifactId>
-  <version>2.6.0</version>
   <description>Apache Hadoop HDFS</description>
-  <name>Apache Hadoop HDFS</name>
+  <name>hadoop-hdfs</name>
   <packaging>jar</packaging>
 
   <properties>
@@ -231,6 +229,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
       <plugin>
         <groupId>org.codehaus.mojo.jspc</groupId>
         <artifactId>jspc-maven-plugin</artifactId>
+	<configuration>
+		<compile>false</compile>
+		<includeInProject>false</includeInProject>
+		<source>1.7</source>
+		<target>1.7</target>
+	</configuration>
         <executions>
           <execution>
             <id>hdfs</id>
@@ -524,6 +528,58 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         </configuration>
       </plugin>
     </plugins>
+    <pluginManagement>
+    	<plugins>
+    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+    		<plugin>
+    			<groupId>org.eclipse.m2e</groupId>
+    			<artifactId>lifecycle-mapping</artifactId>
+    			<version>1.0.0</version>
+    			<configuration>
+    				<lifecycleMappingMetadata>
+    					<pluginExecutions>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>
+    									org.codehaus.mojo.jspc
+    								</groupId>
+    								<artifactId>
+    									jspc-maven-plugin
+    								</artifactId>
+    								<versionRange>
+    									[2.0-alpha-3,)
+    								</versionRange>
+    								<goals>
+    									<goal>compile</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>org.apache.hadoop</groupId>
+    								<artifactId>
+    									hadoop-maven-plugins
+    								</artifactId>
+    								<versionRange>
+    									[2.6.0,)
+    								</versionRange>
+    								<goals>
+    									<goal>protoc</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    					</pluginExecutions>
+    				</lifecycleMappingMetadata>
+    			</configuration>
+    		</plugin>
+    	</plugins>
+    </pluginManagement>
   </build>
 
   <profiles>

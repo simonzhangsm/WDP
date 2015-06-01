@@ -25,12 +25,10 @@
     <version>2.6.0</version>
     <relativePath>../../hadoop-project</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-hdfs-httpfs</artifactId>
-  <version>2.6.0</version>
   <packaging>war</packaging>
 
-  <name>Apache Hadoop HttpFS</name>
+  <name>hadoop-hdfs-httpfs</name>
   <description>Apache Hadoop HttpFS</description>
 
   <properties>
@@ -44,7 +42,7 @@
     </httpfs.tomcat.dist.dir>
     <kerberos.realm>LOCALHOST</kerberos.realm>
     <test.exclude.kerberos.test>**/TestHttpFSWithKerberos.java</test.exclude.kerberos.test>
-    <tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-6/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.tar.gz</tomcat.download.url>
+    <tomcat.download.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.tar.gz</tomcat.download.url>
   </properties>
 
   <dependencies>
@@ -423,6 +421,9 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+        	<version>3.1</version>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

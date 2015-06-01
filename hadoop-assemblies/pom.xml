@@ -26,10 +26,8 @@
     <version>2.6.0</version>
     <relativePath>../hadoop-project</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-assemblies</artifactId>
-  <version>2.6.0</version>
-  <name>Apache Hadoop Assemblies</name>
+  <name>hadoop-assemblies</name>
   <description>Apache Hadoop Assemblies</description>
 
   <properties>
@@ -48,7 +46,7 @@
               <version>[3.0.0,)</version>
             </requireMavenVersion>
             <requireJavaVersion>
-              <version>1.6</version>
+              <version>1.7</version>
             </requireJavaVersion>
           </rules>
         </configuration>

@@ -23,11 +23,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <version>2.6.0</version>
     <relativePath>../hadoop-project</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-hdfs-project</artifactId>
-  <version>2.6.0</version>
   <description>Apache Hadoop HDFS Project</description>
-  <name>Apache Hadoop HDFS Project</name>
+  <name>hadoop-hdfs-project</name>
   <packaging>pom</packaging>
 
   <modules>

@@ -23,11 +23,9 @@
     <version>2.6.0</version>
     <relativePath>../../hadoop-project-dist</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-common</artifactId>
-  <version>2.6.0</version>
   <description>Apache Hadoop Common</description>
-  <name>Apache Hadoop Common</name>
+  <name>hadoop-common</name>
   <packaging>jar</packaging>
 
   <properties>
@@ -526,6 +524,57 @@
         </configuration>
       </plugin>
     </plugins>
+    <pluginManagement>
+    	<plugins>
+    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+    		<plugin>
+    			<groupId>org.eclipse.m2e</groupId>
+    			<artifactId>lifecycle-mapping</artifactId>
+    			<version>1.0.0</version>
+    			<configuration>
+    				<lifecycleMappingMetadata>
+    					<pluginExecutions>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>org.apache.hadoop</groupId>
+    								<artifactId>
+    									hadoop-maven-plugins
+    								</artifactId>
+    								<versionRange>
+    									[2.6.0,)
+    								</versionRange>
+    								<goals>
+    									<goal>protoc</goal>
+    									<goal>version-info</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>org.apache.avro</groupId>
+    								<artifactId>
+    									avro-maven-plugin
+    								</artifactId>
+    								<versionRange>
+    									[1.7.4,)
+    								</versionRange>
+    								<goals>
+    									<goal>schema</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    					</pluginExecutions>
+    				</lifecycleMappingMetadata>
+    			</configuration>
+    		</plugin>
+    	</plugins>
+    </pluginManagement>
   </build>
 
   <profiles>

@@ -92,6 +92,11 @@ case $COMMAND in
     fi
     ;;
 
+  classpath)
+    echo $CLASSPATH
+    exit
+    ;;
+
   #core commands  
   *)
     # the core commands

@@ -23,12 +23,7 @@
     <relativePath>../../hadoop-project</relativePath>
   </parent>
   <artifactId>hadoop-aws</artifactId>
-  <version>2.6.0</version>
-  <name>Apache Hadoop Amazon Web Services support</name>
-  <description>
-    This module contains code to support integration with Amazon Web Services.
-    It also declares the dependencies needed to work with AWS services.
-  </description>
+  <description>Apache Hadoop Amazon Web Services support</description>
   <packaging>jar</packaging>
 
   <properties>
@@ -123,4 +118,5 @@
     </dependency>
 
   </dependencies>
+  <name>hadoop-aws</name>
 </project>

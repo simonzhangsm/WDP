@@ -21,13 +21,11 @@
     <version>2.6.0</version>
     <relativePath>../hadoop-project-dist</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-client</artifactId>
-  <version>2.6.0</version>
   <packaging>jar</packaging>
 
   <description>Apache Hadoop Client</description>
-  <name>Apache Hadoop Client</name>
+  <name>hadoop-client</name>
 
 <properties>
    <hadoop.component>client</hadoop.component>

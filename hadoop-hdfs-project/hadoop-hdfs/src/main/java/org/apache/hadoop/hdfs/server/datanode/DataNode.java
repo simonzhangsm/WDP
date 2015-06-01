@@ -1481,7 +1481,7 @@ public class DataNode extends ReconfigurableBase
         }
       }
     }
-    metrics.incrBlocksGetLocalPathInfo();
+    metrics.incrBlocksGetLocalPathInfo("localclient:localhost:localhost:" + "[" + block.getBlockId() + ":" + block.getBlockName() + "]");
     return info;
   }
 
@@ -1517,7 +1517,7 @@ public class DataNode extends ReconfigurableBase
         blkVersion + ", but the highest format version you can read is " +
         maxVersion);
     }
-    metrics.incrBlocksGetLocalPathInfo();
+    metrics.incrBlocksGetLocalPathInfo("localclient:local:local:[" + blk.getBlockId() + ":" + blk.getBlockName() + "]");
     FileInputStream fis[] = new FileInputStream[2];
     
     try {

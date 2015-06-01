@@ -22,11 +22,9 @@
     <relativePath>../../hadoop-project</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-minikdc</artifactId>
-  <version>2.6.0</version>
   <description>Apache Hadoop MiniKDC</description>
-  <name>Apache Hadoop MiniKDC</name>
+  <name>hadoop-minikdc</name>
   <packaging>jar</packaging>
 
   <dependencies>

@@ -22,11 +22,9 @@
     <artifactId>hadoop-main</artifactId>
     <version>2.6.0</version>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-project</artifactId>
-  <version>2.6.0</version>
   <description>Apache Hadoop Project POM</description>
-  <name>Apache Hadoop Project POM</name>
+  <name>hadoop-project</name>
   <packaging>pom</packaging>
 
   <properties>
@@ -72,7 +70,7 @@
 
     <zookeeper.version>3.4.6</zookeeper.version>
 
-    <tomcat.version>6.0.41</tomcat.version>
+    <tomcat.version>7.0.62</tomcat.version>
   </properties>
 
   <dependencyManagement>
@@ -938,8 +936,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>2.5.1</version>
           <configuration>
-            <source>1.6</source>
-            <target>1.6</target>
+            <source>1.7</source>
+            <target>1.7</target>
           </configuration>
         </plugin>
         <plugin>
@@ -1020,7 +1018,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.2</version>
+          <version>2.6</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -1036,6 +1034,35 @@
           <groupId>org.apache.hadoop</groupId>
           <artifactId>hadoop-maven-plugins</artifactId>
           <version>${project.version}</version>
+        </plugin>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+        	<groupId>org.eclipse.m2e</groupId>
+        	<artifactId>lifecycle-mapping</artifactId>
+        	<version>1.0.0</version>
+        	<configuration>
+        		<lifecycleMappingMetadata>
+        			<pluginExecutions>
+        				<pluginExecution>
+        					<pluginExecutionFilter>
+        						<groupId>
+        							org.apache.maven.plugins
+        						</groupId>
+        						<artifactId>
+        							maven-antrun-plugin
+        						</artifactId>
+        						<versionRange>[1.7,)</versionRange>
+        						<goals>
+        							<goal>run</goal>
+        						</goals>
+        					</pluginExecutionFilter>
+        					<action>
+        						<ignore></ignore>
+        					</action>
+        				</pluginExecution>
+        			</pluginExecutions>
+        		</lifecycleMappingMetadata>
+        	</configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -1075,7 +1102,7 @@
               <version>[3.0.0,)</version>
             </requireMavenVersion>
             <requireJavaVersion>
-              <version>1.6</version>
+              <version>1.7</version>
             </requireJavaVersion>
           </rules>
         </configuration>
@@ -1241,8 +1268,8 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
               <fork>true</fork>
-              <source>1.6</source>
-              <target>1.6</target>
+              <source>1.7</source>
+              <target>1.7</target>
               <compilerArguments>
                 <Xlint/>
                 <Xmaxwarns>9999</Xmaxwarns>

@@ -23,12 +23,10 @@
     <version>2.6.0</version>
     <relativePath>../../hadoop-project</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-nfs</artifactId>
-  <version>2.6.0</version>
   <packaging>jar</packaging>
 
-  <name>Apache Hadoop NFS</name>
+  <name>hadoop-nfs</name>
   <description>Apache Hadoop NFS library</description>
 
   <properties>

@@ -125,12 +125,12 @@ public class TestFileSink {
     // Note that in the below expression we allow tags and metrics to go in arbitrary order.  
     Pattern expectedContentPattern = Pattern.compile(
         // line #1:
-        "^\\d+\\s+test1.testRecord1:\\s+Context=test1,\\s+" +
+        "^\\d+\\s+test1.testRecord1:Tags\\[Context=test1,\\s+" +
         "(testTag1=testTagValue1,\\s+testTag2=testTagValue2|testTag2=testTagValue2,\\s+testTag1=testTagValue1)," +
-        "\\s+Hostname=.*,\\s+(testMetric1=1,\\s+testMetric2=2|testMetric2=2,\\s+testMetric1=1)" +
+        "\\s+Hostname=.*\\]:Metrics\\[(testMetric1=1,\\s+testMetric2=2|testMetric2=2,\\s+testMetric1=1)\\]" +
         // line #2:
-        "$[\\n\\r]*^\\d+\\s+test1.testRecord2:\\s+Context=test1," +
-        "\\s+testTag22=testTagValue22,\\s+Hostname=.*$[\\n\\r]*", 
+        "$[\\n\\r]*^\\d+\\s+test1.testRecord2:Tags\\[Context=test1," +
+        "\\s+testTag22=testTagValue22,\\s+Hostname=.*\\]$[\\n\\r]*",
          Pattern.MULTILINE);
      assertTrue(expectedContentPattern.matcher(outFileContent).matches());
   }

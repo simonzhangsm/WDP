@@ -22,7 +22,13 @@
 # remote nodes.
 
 # The java implementation to use.
-export JAVA_HOME=${JAVA_HOME}
+# export JAVA_HOME=${JAVA_HOME}     
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7` #${JAVA_HOME}
+
+if [ "$JAVA_HOME" = "" ]; then
+  echo "Error: JAVA_HOME is not set."
+  exit 1
+fi
 
 # The jsvc implementation to use. Jsvc is required to run secure datanodes
 # that bind to privileged ports to provide authentication of data transfer

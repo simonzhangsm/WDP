@@ -90,6 +90,8 @@ _hadoop() {
           return 1;
         fi;
 
+		temp=${temp:0:$((${#temp} - 1))};
+
         # Now do completion based on the argument
         case $temp in
         path | src | dst)

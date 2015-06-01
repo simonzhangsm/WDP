@@ -34,7 +34,9 @@
 #include <limits.h>
 #include <sys/stat.h>
 #include <sys/mount.h>
-#include <sys/wait.h>
+#include <sys/wait.h>          
+#include <sys/param.h>                       
+#include <sys/resource.h>
 
 static const int DEFAULT_MIN_USERID = 1000;
 
@@ -451,87 +453,30 @@ char *get_tmp_directory(const char *work_dir) {
  * with the desired permissions.
  */
 int mkdirs(const char* path, mode_t perm) {
-  struct stat sb;
-  char * npath;
-  char * p;
-  if (stat(path, &sb) == 0) {
-    return check_dir(path, sb.st_mode, perm, 1);
-  }
-  npath = strdup(path);
-  if (npath == NULL) {
-    fprintf(LOGFILE, "Not enough memory to copy path string");
-    return -1;
-  }
-  /* Skip leading slashes. */
-  p = npath;
-  while (*p == '/') {
-    p++;
-  }
-
-  while (NULL != (p = strchr(p, '/'))) {
-    *p = '\0';
-    if (create_validate_dir(npath, perm, path, 0) == -1) {
-      free(npath);
-      return -1;
-    }
-    *p++ = '/'; /* restore slash */
-    while (*p == '/')
-      p++;
-  }
-
-  /* Create the final directory component. */
-  if (create_validate_dir(npath, perm, path, 1) == -1) {
-    free(npath);
-    return -1;
-  }
-  free(npath);
-  return 0;
-}
-
-/*
-* Create the parent directory if they do not exist. Or check the permission if
-* the race condition happens.
-* Give 0 or 1 to represent whether this is the final component. If it is, we
-* need to check the permission.
-*/
-int create_validate_dir(char* npath, mode_t perm, char* path, int finalComponent) {
-  struct stat sb;
-  if (stat(npath, &sb) != 0) {
-    if (mkdir(npath, perm) != 0) {
-      if (errno != EEXIST || stat(npath, &sb) != 0) {
-        fprintf(LOGFILE, "Can't create directory %s - %s\n", npath,
-                strerror(errno));
-        return -1;
-      }
-      // The directory npath should exist.
-      if (check_dir(npath, sb.st_mode, perm, finalComponent) == -1) {
+struct stat sb;
+    if (stat(path, &sb) == 0) {
+        if (S_ISDIR (sb.st_mode)) {
+            return 0;
+        }else{
+            fprintf(LOGFILE, "Path %s is not an existed dir\n", path);
         return -1;
       }
     }
-  } else {
-    if (check_dir(npath, sb.st_mode, perm, finalComponent) == -1) {
+    else if (errno != ENOENT) {
+        fprintf(LOGFILE, "Can't access to directory %s - %s.\n", path, strerror(errno));
       return -1;
     }
-  }
+    char npath[PATH_MAX];
+    memset(npath, 0x00, sizeof(npath));
+    strcpy(npath, path);
+    strcpy(npath, dirname(npath));
+
+	if(mkdirs(npath, perm) == 0 && mkdir(path, perm) == 0)
   return 0;
+    fprintf(LOGFILE, "Can't create directory %s - %s.\n", path, strerror(errno));
+    return -1;
 }
 
-// check whether the given path is a directory
-// also check the access permissions whether it is the same as desired permissions
-int check_dir(char* npath, mode_t st_mode, mode_t desired, int finalComponent) {
-  if (!S_ISDIR(st_mode)) {
-    fprintf(LOGFILE, "Path %s is file not dir\n", npath);
-    return -1;
-  } else if (finalComponent == 1) {
-    int filePermInt = st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
-    int desiredInt = desired & (S_IRWXU | S_IRWXG | S_IRWXO);
-    if (filePermInt != desiredInt) {
-      fprintf(LOGFILE, "Path %s does not have desired permission.\n", npath);
-      return -1;
-    }
-  }
-  return 0;
-}
 
 /**
  * Function to prepare the container directories.

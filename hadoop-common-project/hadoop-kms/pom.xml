@@ -25,12 +25,10 @@
     <version>2.6.0</version>
     <relativePath>../../hadoop-project</relativePath>
   </parent>
-  <groupId>org.apache.hadoop</groupId>
   <artifactId>hadoop-kms</artifactId>
-  <version>2.6.0</version>
   <packaging>war</packaging>
 
-  <name>Apache Hadoop KMS</name>
+  <name>hadoop-kms</name>
   <description>Apache Hadoop KMS</description>
 
   <properties>
@@ -38,7 +36,7 @@
       ${project.build.directory}/${project.artifactId}-${project.version}/share/hadoop/kms/tomcat
     </kms.tomcat.dist.dir>
     <tomcat.download.url>
-      http://archive.apache.org/dist/tomcat/tomcat-6/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.tar.gz
+      http://archive.apache.org/dist/tomcat/tomcat-7/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.tar.gz
     </tomcat.download.url>
   </properties>
 
@@ -255,6 +253,9 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+        	<version>3.1</version>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
