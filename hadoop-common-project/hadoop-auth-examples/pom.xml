@@ -20,7 +20,7 @@
   <parent>
     <groupId>org.apache.hadoop</groupId>
     <artifactId>hadoop-project</artifactId>
-    <version>2.6.0</version>
+    <version>2.6.0-cdh5.4.2</version>
     <relativePath>../../hadoop-project</relativePath>
   </parent>
   <artifactId>hadoop-auth-examples</artifactId>
@@ -63,7 +63,6 @@
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
           <warName>hadoop-auth-examples</warName>
-          <version>3.1</version>
         </configuration>
       </plugin>
       <plugin>
